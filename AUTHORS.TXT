@@ -1,0 +1,18 @@
+Iptissem 
+Responsabilités :
+- Déploiement Kubernetes
+- Monitoring (Prometheus / Grafana)
+- Documentation
+- Debug et tests
+
+Redwan
+Responsabilités :
+- Helm
+
+Lamya
+Responsabilités :
+- Documentation
+
+Klein
+Responsabilités :
+- ...
