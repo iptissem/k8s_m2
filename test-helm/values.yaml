@@ -4,6 +4,7 @@
 namespaces:
   data: ns-data
   apps: projet-apps
+  monitoring: ns-monitoring
 
 # =========================
 # Images (UN SEUL BLOC)
@@ -349,7 +350,7 @@ monitoring:
         memory: "200Mi"
 
   prometheus:
-    enabled: false
+    enabled: true
     namespace: ns-monitoring
     image:
       repository: prom/prometheus
@@ -366,17 +367,17 @@ monitoring:
       - "webmvc.projet-apps.svc.cluster.local:80"
     resources:
       requests:
-        cpu: "250m"
-        memory: "500Mi"
+        cpu: "50m"
+        memory: "128Mi"
       limits:
-        cpu: "500m"
-        memory: "1Gi"
+        cpu: "150m"
+        memory: "256Mi"
     service:
       type: ClusterIP
       port: 9090
 
   grafana:
-    enabled: false
+    enabled: true
     namespace: ns-monitoring
     image:
       repository: grafana/grafana
@@ -387,17 +388,17 @@ monitoring:
     adminPassword: "admin"
     resources:
       requests:
-        cpu: "100m"
-        memory: "256Mi"
+        cpu: "25m"
+        memory: "64Mi"
       limits:
-        cpu: "300m"
-        memory: "512Mi"
+        cpu: "100m"
+        memory: "128Mi"
     service:
       type: ClusterIP
       port: 3000
 
   efk:
-    enabled: false
+    enabled: true
     namespace: ns-monitoring
 
     images:
