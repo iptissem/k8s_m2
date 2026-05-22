@@ -19,6 +19,18 @@ Le projet a été testé sur Kubernetes Docker Desktop (cluster local).
 
 # Architecture applicative
 
+## Documentation d'architecture
+
+📄 [Voir l'architecture complète (PDF)](architecture.drawio.pdf)
+
+## Workflow utilisateur
+
+Le schéma ci-dessous représente le parcours d'une requête utilisateur dans l'application :
+
+<p align="center">
+  <img src="workflow_user.png" width="900">
+</p>
+
 L'application contient les microservices suivants :
 
 | Service | Description |
