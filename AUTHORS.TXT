@@ -1,18 +1,20 @@
-Iptissem 
-Responsabilités :
+Iptissem Klein
 - Déploiement Kubernetes
-- Monitoring (Prometheus / Grafana)
-- Documentation
-- Debug et tests
+- Helm
+- Monitoring / Grafana / Prometheus
+- Debug et documentation
 
 Redwan
-Responsabilités :
 - Helm
+- Sécurité / NetworkPolicy / RBAC
+- Tests de déploiement
 
 Lamya
-Responsabilités :
 - Documentation
+- Schémas d’architecture
+- Tests fonctionnels
 
 Klein
-Responsabilités :
-- ...
+- Conteneurisation
+- Déploiement applicatif
+- Support debug
