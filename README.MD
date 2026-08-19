@@ -431,6 +431,25 @@ Dans un environnement AKS multi-nœuds, la haute disponibilité serait pleinemen
 
 ---
 
+### Matrice des flux applicatifs de JobServer
+
+| Source | Destination | Fonction du flux |
+|---|---|---|
+| Utilisateur externe | webmvc | Accès HTTPS à l’application via l’Ingress |
+| webmvc | applicants.api | Consultation et gestion des candidatures |
+| webmvc | jobs.api | Consultation des offres d’emploi |
+| webmvc | identity.api | Authentification des utilisateurs |
+| applicants.api | sql.data | Accès aux données des candidatures |
+| applicants.api | rabbitmq | Échanges entre services |
+| jobs.api | sql.data | Accès aux données des offres |
+| jobs.api | rabbitmq | Échanges entre services |
+| identity.api | user.data | Accès aux données d’authentification |
+| identity.api | rabbitmq | Échanges entre services |
+| Prometheus | Services supervisés | Collecte des métriques |
+| Fluent Bit | Pods du cluster | Collecte des logs |
+| Kibana | Elasticsearch | Consultation et recherche dans les logs |
+| Grafana | Prometheus | Visualisation des métriques |
+
 # Membres du groupe
 
 Voir :
