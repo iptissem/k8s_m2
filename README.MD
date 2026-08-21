@@ -496,6 +496,51 @@ Lorsqu’une anomalie est détectée, l’équipe peut suivre les étapes suivan
 
 En cas d’incident critique, la priorité reste le rétablissement du service. L’analyse détaillée et le retour d’expérience sont complétés une fois l’environnement stabilisé.
 
+### Annexe 10.2 – Support de passation à l’équipe JobServer
+
+La passation doit permettre à l’équipe JobServer de devenir progressivement autonome sur les opérations courantes de maintien en condition opérationnelle.
+
+| Thème | Compétence attendue après la passation | Support utilisé |
+|---|---|---|
+| Kubernetes | Vérifier l’état des pods et identifier un composant indisponible | Démonstration + fiche de commandes |
+| Grafana | Lire un dashboard et identifier une alerte | Démonstration sur le dashboard JobServer |
+| Prometheus | Consulter une métrique Kubernetes | Exemple de requêtes utilisées dans le projet |
+| Kibana | Rechercher les logs d’un service ou une erreur | Démonstration à partir de l’incident webmvc |
+| Jira | Consulter, qualifier et suivre un fait technique | Workflow des FT |
+| Incidents | Distinguer un problème infrastructure d’un problème applicatif | Fiche réflexe |
+| Escalade | Identifier l’interlocuteur à mobiliser selon la cause | Matrice des responsabilités |
+
+**Tableau A10.2 – Contenu de la passation à l’équipe JobServer**
+
+Je prévois une première présentation lors du transfert de l’environnement, puis des rappels en cas d’évolution importante ou lorsqu’un incident met en évidence un besoin de clarification.
+
+Les supports sont conçus pour rester accessibles : structure simple, texte lisible, contraste suffisant, informations qui ne reposent pas uniquement sur la couleur et possibilité d’ajouter des sous-titres aux démonstrations enregistrées.
+
+## Annexe 11 – Glossaire technique
+
+Cette annexe présente les principaux termes techniques utilisés dans le cadre du maintien en condition opérationnelle de JobServer.
+
+| Terme | Définition |
+|---|---|
+| MCO | Maintien en condition opérationnelle. Ensemble des actions permettant de conserver un SI disponible et exploitable dans le temps. |
+| Pod | Plus petite unité déployable dans Kubernetes, contenant un ou plusieurs conteneurs. |
+| Deployment | Ressource Kubernetes permettant de gérer le déploiement et le nombre attendu de pods. |
+| Replica | Instance supplémentaire d’un même pod permettant d’augmenter la disponibilité ou la capacité du service. |
+| HPA | Horizontal Pod Autoscaler. Mécanisme Kubernetes qui adapte automatiquement le nombre de replicas selon la charge. |
+| Liveness Probe | Sonde permettant à Kubernetes de vérifier qu’un conteneur est toujours fonctionnel. |
+| Readiness Probe | Sonde permettant de vérifier si un pod est prêt à recevoir du trafic. |
+| Metrics Server | Composant Kubernetes fournissant notamment les métriques CPU et mémoire utilisées par `kubectl top` et le HPA. |
+| kube-state-metrics | Composant exposant l’état des objets Kubernetes sous forme de métriques exploitables par Prometheus. |
+| Prometheus | Outil de collecte et d’interrogation de métriques utilisé pour la supervision. |
+| Grafana | Outil permettant de visualiser les métriques et de configurer des règles d’alerte. |
+| EFK | Ensemble Elasticsearch, Fluent Bit et Kibana utilisé pour centraliser et consulter les logs. |
+| Jira | Outil utilisé dans le projet pour consigner et suivre les faits techniques et incidents. |
+| FT | Fait technique. Ticket permettant de tracer une anomalie, son analyse, son responsable et son traitement. |
+| Helm | Gestionnaire de packages Kubernetes utilisé pour déployer et mettre à jour les composants du projet. |
+| Ingress | Ressource Kubernetes permettant de gérer l’accès HTTP/HTTPS à une application depuis l’extérieur du cluster. |
+| Namespace | Espace logique Kubernetes utilisé pour regrouper et séparer les ressources selon leur fonction. |
+
+**Tableau A11.1 – Glossaire des principaux termes utilisés dans le Bloc 3**
 # Membres du groupe
 
 Voir :
