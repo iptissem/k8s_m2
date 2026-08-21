@@ -472,6 +472,30 @@ Cette organisation me permet de ne pas traiter tous les incidents de la même ma
 
 *Les noms utilisés pour les membres des équipes sont fictifs et servent uniquement à illustrer l’organisation retenue pour le projet.*
 
+## Annexe 10 – Support de sensibilisation et documentation d’exploitation
+
+Cette annexe présente les supports prévus pour accompagner l’équipe JobServer dans la prise en main de l’environnement Kubernetes après la phase de stabilisation. L’objectif est de faciliter les premières opérations de supervision, de diagnostic et de suivi des incidents.
+
+### Annexe 10.1 – Fiche réflexe en cas d’incident
+
+Lorsqu’une anomalie est détectée, l’équipe peut suivre les étapes suivantes :
+
+| Étape | Action | Outil principal |
+|---|---|---|
+| 1. Détecter | Identifier l’alerte, le composant concerné et son niveau de criticité | Grafana |
+| 2. Vérifier | Contrôler l’état des pods, services et ressources Kubernetes | kubectl / Metrics Server |
+| 3. Diagnostiquer | Consulter les métriques, événements et logs associés au composant | Prometheus / Kibana |
+| 4. Consigner | Vérifier ou compléter le fait technique créé dans Jira | Jira |
+| 5. Qualifier | Déterminer si l’incident relève de l’infrastructure ou de l’application | Jira / Analyse technique |
+| 6. Affecter | Transmettre le FT à l’interlocuteur compétent | Jira |
+| 7. Corriger | Appliquer le correctif adapté au périmètre concerné | Kubernetes / Helm / Code applicatif |
+| 8. Valider | Vérifier le retour du service, les métriques et l’absence de nouvelles erreurs | Grafana / Kibana / Kubernetes |
+| 9. Clôturer | Documenter la cause, le correctif et les éventuelles actions préventives | Jira |
+
+**Tableau A10.1 – Fiche réflexe de prise en charge d’un incident JobServer**
+
+En cas d’incident critique, la priorité reste le rétablissement du service. L’analyse détaillée et le retour d’expérience sont complétés une fois l’environnement stabilisé.
+
 # Membres du groupe
 
 Voir :
