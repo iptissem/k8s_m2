@@ -454,13 +454,24 @@ Dans un environnement AKS multi-nœuds, la haute disponibilité serait pleinemen
 
 Cette annexe précise la répartition des rôles entre JobServer, en tant que client, et l’équipe prestataire chargée de la migration et de la phase de stabilisation de l’infrastructure Kubernetes.
 
-| Organisation | Persona / Fonction | Objectif principal | Responsabilités dans le projet | Rôle en cas d’incident | Niveau d’intervention |
-|---|---|---|---|---|---|
-| JobServer | Responsable métier / Commanditaire | Garantir la disponibilité du service pour les candidats et recruteurs | Exprimer les besoins, valider les choix fonctionnels et suivre l’impact métier | Évalue l’impact sur les utilisateurs et valide le retour à un fonctionnement normal | Métier / décisionnel |
-| JobServer | Développeur référent | Maintenir le bon fonctionnement des microservices | Connaître le code applicatif, les dépendances et les contraintes techniques des API | Analyse et corrige les anomalies provenant du code ou du comportement applicatif | Applicatif |
-| Prestataire | Cheffe de projet / Référente technique | Piloter la migration et assurer la phase de stabilisation | Coordonner les acteurs, suivre les livrables, organiser la supervision et le support | Qualifie l’incident, définit sa priorité, ouvre ou suit le FT et mobilise l’interlocuteur compétent | Coordination / technique |
-| Prestataire | Ingénieur DevOps / Exploitation | Maintenir l’infrastructure Kubernetes opérationnelle | Administrer Kubernetes, Helm, Ingress, ressources, supervision et déploiements | Analyse les incidents liés au cluster, aux pods, aux ressources, au réseau ou au déploiement | Infrastructure |
-| Prestataire | Référent sécurité | Garantir le respect des exigences de sécurité | Suivre les accès, RBAC, secrets, flux réseau et mesures de sécurisation | Intervient en cas d’anomalie concernant les accès, les données ou la sécurité du SI | Sécurité |
+## Annexe 7 – Organisation des équipes JobServer et prestataire
+
+Cette annexe précise la répartition des rôles entre JobServer, en tant que client, et l’équipe prestataire chargée de la migration et de la phase de stabilisation de l’infrastructure Kubernetes.
+
+| Organisation | Persona | Fonction | Objectif principal | Rôle en cas d’incident |
+|---|---|---|---|---|
+| JobServer | Claire Martin | Responsable métier / Commanditaire | Garantir la disponibilité du service pour les candidats et les recruteurs | Évalue l’impact métier et valide le retour au fonctionnement normal |
+| JobServer | Lucas Bernard | Développeur référent | Maintenir le bon fonctionnement des microservices | Analyse et corrige les anomalies liées au code ou au comportement applicatif |
+| Prestataire | Iptissem Zitouni | Cheffe de projet / Référente technique | Piloter la migration et assurer la phase de stabilisation | Qualifie l’incident, définit sa priorité, suit le FT et coordonne les différents intervenants |
+| Prestataire | Mehdi Laurent | Ingénieur DevOps / Exploitation | Maintenir l’infrastructure Kubernetes opérationnelle | Analyse les incidents liés au cluster, aux pods, aux ressources, au réseau ou au déploiement |
+| Prestataire | Sofia Robert | Référente sécurité | Garantir le respect des exigences de sécurité | Intervient sur les incidents liés aux accès, aux données ou à la sécurité du SI |
+
+**Tableau A7.1 – Personae et responsabilités des équipes JobServer et prestataire**
+
+Cette organisation me permet de ne pas traiter tous les incidents de la même manière. Je reste le point d’entrée pendant la phase de stabilisation, mais la résolution dépend ensuite de l’origine du problème. Un incident lié à Kubernetes ou au déploiement est pris en charge côté prestataire, tandis qu’une anomalie provenant du code d’un microservice est transmise à l’équipe de développement JobServer.
+
+*Les noms utilisés pour les membres des équipes sont fictifs et servent uniquement à illustrer l’organisation retenue pour le projet.*
+
 # Membres du groupe
 
 Voir :
