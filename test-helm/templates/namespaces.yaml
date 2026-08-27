@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: projet-apps
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ns-data
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ns-monitoring
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ns-logging

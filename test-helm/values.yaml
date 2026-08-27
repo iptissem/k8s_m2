@@ -5,9 +5,10 @@ namespaces:
   data: ns-data
   apps: projet-apps
   monitoring: ns-monitoring
+  logging: ns-logging
 
 # =========================
-# Images (UN SEUL BLOC)
+# Images
 # =========================
 images:
   pullPolicy: Always
@@ -316,7 +317,7 @@ web:
 
   # Par défaut OFF : HPA nécessite metrics-server
   hpa:
-    enabled: false
+    enabled: true
     minReplicas: 2
     maxReplicas: 5
     cpuAverageUtilization: 60
@@ -336,7 +337,7 @@ web:
 # =========================
 monitoring:
   metricsServer:
-    enabled: false
+    enabled: true
     namespace: kube-system
     kubeletInsecureTLS: true
     metricResolution: "15s"
@@ -399,7 +400,7 @@ monitoring:
 
   efk:
     enabled: true
-    namespace: ns-monitoring
+    namespace: ns-logging
 
     images:
       elasticsearch:

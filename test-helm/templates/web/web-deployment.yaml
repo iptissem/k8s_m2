@@ -7,7 +7,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: webmvc
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ .Values.namespaces.apps | default "projet-apps" }}
   labels:
     app: webmvc
 spec:

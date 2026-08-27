@@ -44,12 +44,19 @@ data:
       - job_name: 'kubernetes-apiservers'
         kubernetes_sd_configs:
           - role: endpoints
+
       - job_name: 'my-apps'
         static_configs:
           - targets:
-{{- range .Values.monitoring.prometheus.targets }}
-            - {{ . | quote }}
-{{- end }}
+            - "identity-api.projet-apps.svc.cluster.local:80"
+            - "jobs-api.projet-apps.svc.cluster.local:80"
+            - "applicants-api.projet-apps.svc.cluster.local:80"
+            - "webmvc.projet-apps.svc.cluster.local:80"
+
+      - job_name: 'kube-state-metrics'
+        static_configs:
+          - targets:
+            - "kube-state-metrics.ns-monitoring.svc.cluster.local:8080"
 
 ---
 apiVersion: apps/v1
