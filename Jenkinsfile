@@ -19,8 +19,9 @@ pipeline {
             steps {
                 sh '''
                     helm upgrade --install jobserver ./test-helm \
-                      --wait \
-                      --timeout 5m
+                    --namespace default \
+                    --wait \
+                    --timeout 5m
                 '''
             }
         }
