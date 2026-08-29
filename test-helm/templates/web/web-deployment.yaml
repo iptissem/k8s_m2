@@ -11,7 +11,6 @@ metadata:
   labels:
     app: webmvc
 spec:
-  replicas: {{ .Values.web.replicas | default 1 }}
   selector:
     matchLabels:
       app: webmvc
@@ -22,6 +21,7 @@ spec:
     spec:
       {{- if (and .Values.web.affinity (eq (toString .Values.web.affinity.enabled) "true")) }}
       affinity:
+        # WebMVC préfère rester proche des API
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
             - weight: 100
@@ -33,7 +33,17 @@ spec:
                       values:
                         - jobs-api
                         - applicants-api
-                topologyKey: "kubernetes.io/hostname"
+                topologyKey: kubernetes.io/hostname
+
+      # Répartit les replicas WebMVC entre les différents nœuds
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          nodeTaintsPolicy: Honor
+          labelSelector:
+            matchLabels:
+              app: webmvc
       {{- end }}
 
       containers:
