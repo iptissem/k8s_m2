@@ -34,8 +34,7 @@ spec:
                   - -c
                   - |
                     sleep {{ .Values.sqlData.postStartSleepSeconds | default 30 }};
-                    /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P {{ .Values.sqlData.env.saPassword | quote }} -Q "IF DB_ID('{{ .Values.sqlData.initDb.name }}') IS NULL CREATE DATABASE [{{ .Values.sqlData.initDb.name }}]"
-
+                    /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "$SA_PASSWORD" -Q "IF DB_ID('{{ .Values.sqlData.initDb.name }}') IS NULL CREATE DATABASE [{{ .Values.sqlData.initDb.name }}']"
           ports:
             - containerPort: 1433
             - containerPort: 135
@@ -44,7 +43,10 @@ spec:
             - name: ACCEPT_EULA
               value: {{ .Values.sqlData.env.acceptEula | default "Y" | quote }}
             - name: SA_PASSWORD
-              value: {{ .Values.sqlData.env.saPassword | quote }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.data.name | quote }}
+                  key: {{ .Values.secrets.data.sqlPasswordKey | quote }}
             - name: MSSQL_TCP_PORT
               value: {{ .Values.sqlData.env.tcpPort | default "1433" | quote }}
             - name: MSSQL_RPC_PORT
@@ -53,18 +55,13 @@ spec:
           readinessProbe:
             exec:
               command:
-                - /opt/mssql-tools/bin/sqlcmd
-                - -S
-                - localhost
-                - -U
-                - sa
-                - -P
-                - {{ .Values.sqlData.env.saPassword | quote }}
-                - -Q
-                - "SELECT 1"
+                - /bin/sh
+                - -c
+                - |
+                  /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "$SA_PASSWORD" -Q "SELECT 1"
             initialDelaySeconds: {{ .Values.sqlData.readinessProbe.initialDelaySeconds | default 60 }}
             periodSeconds: {{ .Values.sqlData.readinessProbe.periodSeconds | default 20 }}
-
+            
           resources:
             requests:
               cpu: {{ .Values.sqlData.resources.requests.cpu | default "500m" | quote }}
