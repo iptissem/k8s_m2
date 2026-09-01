@@ -30,19 +30,19 @@ pipeline {
                 sh '''
                     kubectl rollout status deployment/applicants-api \
                       -n projet-apps \
-                      --timeout=120s
+                      --timeout=300s
 
                     kubectl rollout status deployment/identity-api \
                       -n projet-apps \
-                      --timeout=120s
+                      --timeout=300s
 
                     kubectl rollout status deployment/jobs-api \
                       -n projet-apps \
-                      --timeout=120s
+                      --timeout=300s
 
                     kubectl rollout status deployment/webmvc \
                       -n projet-apps \
-                      --timeout=120s
+                      --timeout=300s
                 '''
             }
         }
@@ -52,11 +52,11 @@ pipeline {
                 sh '''
                     kubectl rollout status deployment/prometheus \
                       -n ns-monitoring \
-                      --timeout=120s
+                      --timeout=300s
 
                     kubectl rollout status deployment/grafana \
                       -n ns-monitoring \
-                      --timeout=120s
+                      --timeout=300s
                 '''
             }
         }
@@ -66,15 +66,15 @@ pipeline {
                 sh '''
                     kubectl rollout status deployment/kibana \
                       -n ns-logging \
-                      --timeout=120s
+                      --timeout=300s
 
                     kubectl rollout status statefulset/elasticsearch \
                       -n ns-logging \
-                      --timeout=120s
+                      --timeout=300s
 
                     kubectl rollout status daemonset/fluent-bit \
                       -n ns-logging \
-                      --timeout=120s
+                      --timeout=300s
                 '''
             }
         }
@@ -84,19 +84,19 @@ pipeline {
                 sh '''
                     kubectl rollout status statefulset/rabbitmq \
                       -n ns-data \
-                      --timeout=120s
+                      --timeout=300s
 
                     kubectl rollout status statefulset/redis \
                       -n ns-data \
-                      --timeout=120s
+                      --timeout=300s
 
                     kubectl rollout status statefulset/sql-data \
                       -n ns-data \
-                      --timeout=120s
+                      --timeout=300s
 
                     kubectl rollout status statefulset/user-data \
                       -n ns-data \
-                      --timeout=120s
+                      --timeout=300s
                 '''
             }
         }
