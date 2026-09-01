@@ -20,8 +20,7 @@ pipeline {
                 sh '''
                     helm upgrade --install jobserver ./test-helm \
                     --namespace default \
-                    --wait \
-                    --timeout 5m
+                    --no-hooks
                 '''
             }
         }
