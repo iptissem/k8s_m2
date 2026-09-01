@@ -72,11 +72,19 @@ spec:
               cpu: {{ .Values.web.resources.limits.cpu | default "1" | quote }}
               memory: {{ .Values.web.resources.limits.memory | default "2000Mi" | quote }}
 
+          {{- if .Values.web.livenessProbe }}
           livenessProbe:
+            {{- if eq (default "http" .Values.web.livenessProbe.type) "tcp" }}
+            tcpSocket:
+              port: {{ .Values.web.containerPort | default 80 }}
+            {{- else }}
             httpGet:
               path: {{ .Values.web.livenessProbe.path | default "/" | quote }}
               port: {{ .Values.web.containerPort | default 80 }}
+            {{- end }}
             initialDelaySeconds: {{ .Values.web.livenessProbe.initialDelaySeconds | default 60 }}
             periodSeconds: {{ .Values.web.livenessProbe.periodSeconds | default 10 }}
-
+            timeoutSeconds: {{ .Values.web.livenessProbe.timeoutSeconds | default 2 }}
+            failureThreshold: {{ .Values.web.livenessProbe.failureThreshold | default 3 }}
+          {{- end }}
 {{- end }}

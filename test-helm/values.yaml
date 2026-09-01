@@ -291,6 +291,13 @@ web:
   affinity:
     enabled: true
 
+  livenessProbe:
+    type: tcp
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 2
+    failureThreshold: 3
+
   env:
     identityApiUrl: "http://identity-api.projet-apps.svc.cluster.local"
     jobsApiUrl: "http://jobs-api.projet-apps.svc.cluster.local"
@@ -309,11 +316,6 @@ web:
     limits:
       cpu: "1"
       memory: "2000Mi"
-
-  livenessProbe:
-    path: "/"
-    initialDelaySeconds: 60
-    periodSeconds: 10
 
   # Par défaut OFF : HPA nécessite metrics-server
   hpa:
