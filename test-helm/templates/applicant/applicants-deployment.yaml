@@ -50,10 +50,17 @@ spec:
               value: {{ .Values.applicants.env.aspnetcoreUrls | default "http://+:80" | quote }}
 
             - name: ConnectionString
-              value: {{ .Values.applicants.env.connectionString | quote }}
-            - name: ApiSettings__ConnectionString
-              value: {{ .Values.applicants.env.connectionString | quote }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.app.name | quote }}
+                  key: {{ .Values.secrets.app.applicantsConnectionKey | quote }}
 
+            - name: ApiSettings__ConnectionString
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.app.name | quote }}
+                  key: {{ .Values.secrets.app.applicantsConnectionKey | quote }}
+                  
             - name: ApiSettings__RedisConnectionString
               value: {{ .Values.applicants.env.redisConnectionString | default "redis.ns-data:6379" | quote }}
 

@@ -35,10 +35,17 @@ spec:
               value: {{ .Values.jobs.env.aspnetcoreUrls | default "http://+:80" | quote }}
 
             - name: ConnectionString
-              value: {{ .Values.jobs.env.connectionString | quote }}
-            - name: ApiSettings__ConnectionString
-              value: {{ .Values.jobs.env.connectionString | quote }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.app.name | quote }}
+                  key: {{ .Values.secrets.app.jobsConnectionKey | quote }}
 
+            - name: ApiSettings__ConnectionString
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.app.name | quote }}
+                  key: {{ .Values.secrets.app.jobsConnectionKey | quote }}
+                  
             - name: ApiSettings__RedisConnectionString
               value: {{ .Values.jobs.env.redisConnectionString | quote }}
 

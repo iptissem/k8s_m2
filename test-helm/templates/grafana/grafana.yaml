@@ -37,7 +37,10 @@ spec:
           - containerPort: 3000
         env:
         - name: GF_SECURITY_ADMIN_PASSWORD
-          value: "admin"
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.secrets.monitoring.name | quote }}
+              key: {{ .Values.secrets.monitoring.adminPasswordKey | quote }}
         resources:
           requests:
             cpu: "100m"

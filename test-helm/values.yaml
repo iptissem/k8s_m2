@@ -46,6 +46,26 @@ images:
     tag: v1.0.0
 
 # =========================
+# SECRETS
+# =========================
+
+secrets:
+  app:
+    name: jobserver-app-secrets
+    applicantsConnectionKey: applicants-connection-string
+    jobsConnectionKey: jobs-connection-string
+    identityConnectionKey: identity-connection-string
+
+  data:
+    name: jobserver-secrets
+    sqlPasswordKey: sql-sa-password
+    rabbitmqUsernameKey: rabbitmq-username
+    rabbitmqPasswordKey: rabbitmq-password
+
+  monitoring:
+    name: grafana-secrets
+    adminPasswordKey: admin-password
+# =========================
 # APPLICANTS API
 # =========================
 applicants:
@@ -62,7 +82,6 @@ applicants:
   env:
     environment: "Development"
     aspnetcoreUrls: "http://+:80"
-    connectionString: "Server=sql-data.ns-data;User Id=sa;Password=Pass@word;Database=dotnetgigs.applicants;TrustServerCertificate=True;Connect Timeout=60;"
     redisConnectionString: "redis.ns-data:6379"
     rabbitmqHost: "rabbitmq.ns-data.svc.cluster.local"
 
@@ -99,7 +118,6 @@ sqlData:
 
   env:
     acceptEula: "Y"
-    saPassword: "Pass@word"
     tcpPort: "1433"
     rpcPort: "135"
 
@@ -136,7 +154,6 @@ userData:
 
   env:
     acceptEula: "Y"
-    saPassword: "Pass@word"
     tcpPort: "1433"
 
   service:
@@ -198,9 +215,6 @@ rabbitmq:
     amqpPort: 5672
     managementPort: 15672
 
-  env:
-    username: "guest"
-    password: "guest"
 
 # =========================
 # IDENTITY API
@@ -221,7 +235,6 @@ identity:
   env:
     environment: "Development"
     aspnetcoreUrls: "http://+:80"
-    connectionString: "Server=user-data.ns-data;Database=Microsoft.eShopOnContainers.Services.IdentityDb;User Id=sa;Password=Pass@word;TrustServerCertificate=True;Connect Timeout=60;"
     redisConnectionString: "redis.ns-data.svc.cluster.local:6379"   
     rabbitmqHost: "rabbitmq.ns-data.svc.cluster.local"
 
@@ -259,7 +272,6 @@ jobs:
   env:
     environment: "Development"
     aspnetcoreUrls: "http://+:80"
-    connectionString: "Server=sql-data.ns-data;User Id=sa;Password=Pass@word;Database=dotnetgigs.jobs;TrustServerCertificate=True;Connect Timeout=60;"
     redisConnectionString: "redis.ns-data.svc.cluster.local:6379"
 
     rabbitmqHost: "rabbitmq.ns-data.svc.cluster.local"
@@ -388,7 +400,6 @@ monitoring:
       pullPolicy: IfNotPresent
     replicas: 1
     containerPort: 3000
-    adminPassword: "admin"
     resources:
       requests:
         cpu: "25m"
