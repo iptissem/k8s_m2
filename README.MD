@@ -540,14 +540,13 @@ Cette annexe présente les principaux termes techniques utilisés dans le cadre 
 | Ingress | Ressource Kubernetes permettant de gérer l’accès HTTP/HTTPS à une application depuis l’extérieur du cluster. |
 | Namespace | Espace logique Kubernetes utilisé pour regrouper et séparer les ressources selon leur fonction. |
 
- values.yaml          Chart Helm            Helm                 Kubernetes
-┌────────────┐      ┌────────────┐      ┌────────────┐      ┌─────────────────┐
-│ paramètres │ ---> │ templates  │ ---> │ upgrade /  │ ---> │ projet-apps     │
-│            │      │ K8s        │      │ install    │      │ ns-data         │
-└────────────┘      └────────────┘      └────────────┘      │ monitoring...   │
-                                                            └─────────────────┘
+┌───────────────┐     ┌──────────────────┐     ┌──────────────────┐     ┌───────────────────────────┐
+│  values.yaml  │ --> │    Chart Helm    │ --> │       Helm       │ --> │    Cluster Kubernetes     │
+│  Paramètres   │     │ Templates K8s    │     │ upgrade/install  │     │ projet-apps • ns-data     │
+└───────────────┘     └──────────────────┘     └──────────────────┘     │ monitoring • logging      │
+                                                                       └───────────────────────────┘
 
-              Déploiement reproductible et versionné
+                         Déploiement reproductible et versionné
 
 # Membres du groupe
 
