@@ -1,1 +1,1 @@
-Demo Jenkins soutenance
+Trigger Jenkins demo 07/09/2026
